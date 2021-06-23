@@ -236,7 +236,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button name="proses" type="submit" class="btn btn-primary">Submit</button>
+                  <button href="<?php echo site_url('dashboard2')?>" name="proses" type="submit" class="btn btn-primary" value="Submit">Submit</button>
                 </div>
               </form>
               <?php
@@ -253,7 +253,9 @@
                 peringkat = '$_POST[peringkat]',
                 kadaluarsa = '$_POST[kadaluarsa]'");
 
-                echo "Data Peserta Baru Telah Disimpan";
+                
+
+                echo "Data Akreditasi Telah Berhasil Diupload";
                 
 
                 }

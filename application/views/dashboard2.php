@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('asset/dist/css/adminlte.min.css'); ?>">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -113,7 +117,71 @@
 
     <!-- Main content -->
     <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <!-- search -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th style="vertical-align:middle">Peguruan Tinggi</th>
+                    <th style="vertical-align:middle">Program Studi</th>
+                    <th style="vertical-align:middle">Strata</th>
+                    <th style="vertical-align:middle">Wilayah</th>
+                    <th style="vertical-align:middle">Nomor SK</th>
+                    <th style="vertical-align:middle">Tahun SK</th>
+                    <th style="vertical-align:middle">Peringkat</th>
+                    <th style="vertical-align:middle">Masa Berlaku</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                      $connection = mysqli_connect("localhost","root","");
+                      $db = mysqli_select_db($connection,'akreditasi');
 
+                      $query = " SELECT * FROM banpt ";
+                      $query_run = mysqli_query($connection,$query);
+
+                      while($row = mysqli_fetch_array($query_run))
+                      {
+                          ?>
+                          <tr>
+                              <td><?php echo $row['perguruan_tinggi'] ?></td>
+                              <td><?php echo $row['prodi'] ?></td>
+                              <td><?php echo $row['strata'] ?></td>
+                              <td><?php echo $row['wilayah'] ?></td>
+                              <td><?php echo $row['no_sk'] ?></td>
+                              <td><?php echo $row['tahun_sk'] ?></td>
+                              <td><?php echo $row['peringkat'] ?></td>
+                              <td><?php echo $row['kadaluarsa'] ?></td>
+                             
+                          </tr>
+                          <?php
+                      }
+                  ?>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Peguruan Tinggi</th>
+                    <th>Program Studi</th>
+                    <th>Strata</th>
+                    <th>Wilayah</th>
+                    <th>Nomor SK</th>
+                    <th>Tahun SK</th>
+                    <th>Peringkat</th>
+                    <th>Masa Berlaku</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
     </section>
     <!-- /.content -->
   </div>
@@ -159,5 +227,40 @@
 <script src="<?php echo base_url('asset/dist/js/demo.js'); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url('asset/dist/js/pages/dashboard2.js'); ?>"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url('asset/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-buttons/js/dataTables.buttons.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.bootstrap4.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/jszip/jszip.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/pdfmake/pdfmake.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/pdfmake/vfs_fonts.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
+<script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url('asset/dist/js/adminlte.min.js'); ?>"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url('asset/dist/js/demo.js'); ?>"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 </body>
 </html>
