@@ -11,14 +11,14 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="">
   <link rel="stylesheet" href="<?php echo base_url('asset/plugins/fontawesome-free/css/all.min.css'); ?>">
+   <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('asset/dist/css/adminlte.min.css'); ?>">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-responsive/css/responsive.bootstrap4.min.css'); ?>">
-  <link rel="stylesheet" href="<?php echo base_url('asset/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'); ?>">
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -240,11 +240,6 @@
 <script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.html5.min.js'); ?>"></script>
 <script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.print.min.js'); ?>"></script>
 <script src="<?php echo base_url('asset/plugins/datatables-buttons/js/buttons.colVis.min.js'); ?>"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('asset/dist/js/adminlte.min.js'); ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url('asset/dist/js/demo.js'); ?>"></script>
-<!-- Page specific script -->
 <script>
   $(function () {
     $("#example1").DataTable({

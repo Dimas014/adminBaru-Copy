@@ -209,7 +209,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tahun SK</label>
-                    <input name="tahun_sk" type="text" class="form-control" id="exampleInputEmail1" placeholder="Tahun SK" required>
+                    <input name="tahun_sk" type="number" class="form-control" id="exampleInputEmail1" placeholder="Tahun SK" required>
                   </div>
                   <div class="form-group">
                     <label>Peringkat</label>
