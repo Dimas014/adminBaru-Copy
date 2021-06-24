@@ -118,9 +118,7 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <!-- search -->
-              </div>
+              
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
