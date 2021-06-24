@@ -19,14 +19,11 @@
   <link rel="stylesheet" href="<?php echo base_url('asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('asset/dist/css/adminlte.min.css'); ?>">
+  </style>
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="<?php echo base_url('asset/dist/img/AdminLTELogo.png'); ?>" alt="AdminLTELogo" height="60" width="60">
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark">
@@ -137,6 +134,7 @@
                     <th style="vertical-align:middle">Tahun SK</th>
                     <th style="vertical-align:middle">Peringkat</th>
                     <th style="vertical-align:middle">Masa Berlaku</th>
+                    <th style="vertical-align:middle">Status Kadaluarsa</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -151,7 +149,9 @@
                       {
                           ?>
                           <tr>
-                              <td><?php echo $row['perguruan_tinggi'] ?></td>
+                              <td>                                  
+                                <?php echo $row['perguruan_tinggi'] ?>
+                              </td>
                               <td><?php echo $row['prodi'] ?></td>
                               <td><?php echo $row['strata'] ?></td>
                               <td><?php echo $row['wilayah'] ?></td>
@@ -159,6 +159,18 @@
                               <td><?php echo $row['tahun_sk'] ?></td>
                               <td><?php echo $row['peringkat'] ?></td>
                               <td><?php echo $row['kadaluarsa'] ?></td>
+                              <td>
+                                <?php
+                                  $awal  = date_create($row['kadaluarsa']);
+                                  $akhir = date_create();                                   
+                                  if($akhir>$awal){
+                                  echo "<font color='red'>Sudah Kadaluarsa</font>";
+                                  }else{
+                                  echo "<font color='green'>Belum Kadaluarsa</font>";}
+                                ?>
+                              
+                              </td>
+                              
                              
                           </tr>
                           <?php
@@ -167,14 +179,15 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Peguruan Tinggi</th>
-                    <th>Program Studi</th>
-                    <th>Strata</th>
-                    <th>Wilayah</th>
-                    <th>Nomor SK</th>
-                    <th>Tahun SK</th>
-                    <th>Peringkat</th>
-                    <th>Masa Berlaku</th>
+                    <th style="vertical-align:middle">Peguruan Tinggi</th>
+                    <th style="vertical-align:middle">Program Studi</th>
+                    <th style="vertical-align:middle">Strata</th>
+                    <th style="vertical-align:middle">Wilayah</th>
+                    <th style="vertical-align:middle">Nomor SK</th>
+                    <th style="vertical-align:middle">Tahun SK</th>
+                    <th style="vertical-align:middle">Peringkat</th>
+                    <th style="vertical-align:middle">Masa Berlaku</th>
+                    <th style="vertical-align:middle">Status Kadaluarsa</th>
                   </tr>
                   </tfoot>
                 </table>

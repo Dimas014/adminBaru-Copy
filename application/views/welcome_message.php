@@ -47,7 +47,7 @@
 
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -205,11 +205,12 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nomor SK</label>
-                    <input name="no_sk" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nomor SK" required>
+                    <input name="no_sk" type="text" class="form-control" id="exampleInputEmail1" placeholder="xxxx/SK/BAN-PT/Akred/xx/xxx" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tahun SK</label>
-                    <input name="tahun_sk" type="number" class="form-control" id="exampleInputEmail1" placeholder="Tahun SK" required>
+                    <input name="tahun_sk" type="number" class="form-control" id="exampleInputEmail1" placeholder="YYYY" 
+                    pattern="[0-9]{4}" title="Input Tahun (YYYY)" min="2000" max="2999" required>
                   </div>
                   <div class="form-group">
                     <label>Peringkat</label>
