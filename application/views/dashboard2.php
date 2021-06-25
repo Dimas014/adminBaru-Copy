@@ -22,6 +22,7 @@
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
 <div class="wrapper">
 
 
@@ -118,7 +119,21 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              
+            <div class="col-sm-4">
+		        <div class="form-group">
+            <?php 
+                  $s_keyword="";
+                  if (isset($_POST['search'])) {
+                      $s_keyword = $_POST['s_keyword'];
+                  }
+                 ?>
+		            <input type="text" placeholder="Keyword" name="s_keyword" id="s_keyword" class="form-control" value="<?php echo $s_keyword; ?>">                
+		    </div>
+		    <div class="col-sm-4" >
+		        <button id="search" name="search" class="btn btn-warning">Cari</button>
+            
+		        </div>
+		    </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
@@ -137,16 +152,36 @@
                   </thead>
                   <tbody>
                   <?php
-                      $connection = mysqli_connect("localhost","root","");
-                      $db = mysqli_select_db($connection,'akreditasi');
+                    
+                    define('HOST','localhost');
+                    define('USER','root');
+                    define('PASS','');
+                    define('DB1', 'akreditasi');
+                  
+                  // Buat Koneksinya
+                  $db1 = new mysqli(HOST, USER, PASS, DB1);
+                  
 
-                      $query = " SELECT * FROM banpt ";
-                      $query_run = mysqli_query($connection,$query);
-
-                      while($row = mysqli_fetch_array($query_run))
-                      {
-                          ?>
-                          <tr>
+	            $search_keyword = '%'. $s_keyword .'%';	            
+	            $query = "SELECT * FROM banpt WHERE perguruan_tinggi LIKE ? OR prodi LIKE ? OR strata LIKE ?  OR wilayah LIKE ? 
+              OR no_sk LIKE ? OR tahun_sk LIKE ? OR peringkat LIKE ? OR kadaluarsa LIKE ? ORDER BY peringkat DESC";
+	            $dewan1 = $db1->prepare($query);
+	            $dewan1->bind_param('ssssssss', $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+	            $dewan1->execute();
+	            $res1 = $dewan1->get_result();
+ 
+	            if ($res1->num_rows > 0) {
+	                while ($row = $res1->fetch_assoc()) {
+	                    $perguruan_tinggi = $row['perguruan_tinggi'];
+	                    $prodi = $row['prodi'];
+	                    $strata = $row['strata'];
+	                    $wilayah = $row['wilayah'];
+	                    $no_sk = $row['no_sk'];
+	                    $tahun_sk = $row['tahun_sk'];
+                      $peringkat = $row['peringkat'];
+                      $kadaluarsa = $row['kadaluarsa'];                      
+                      ?>
+                        <tr>
                               <td>                                  
                                 <?php echo $row['perguruan_tinggi'] ?>
                               </td>
@@ -165,15 +200,14 @@
                                   echo "<font color='red'>Sudah Kadaluarsa</font>";
                                   }else{
                                   echo "<font color='green'>Belum Kadaluarsa</font>";}
-                                ?>
-                              
-                              </td>
-                              
-                             
+                                ?>                              
+                              </td>                              
                           </tr>
-                          <?php
-                      }
-                  ?>
+                  <?php } } else { ?> 
+                      <tr>
+	                <td colspan='7'>Tidak ada data ditemukan</td>
+	            </tr>
+	        <?php } ?>
                   </tbody>
                   <tfoot>
                   <tr>
